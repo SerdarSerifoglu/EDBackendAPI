@@ -1,4 +1,5 @@
 ﻿using EDBackendAPI.Business.Abstract;
+using EDBackendAPI.Core.Utilities.Results;
 using EDBackendAPI.DataAccess.Abstract;
 using EDBackendAPI.Entities.Concrete;
 using System;
@@ -15,34 +16,37 @@ namespace EDBackendAPI.Business.Concrete
         {
             _productDal = productDal;
         }
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
             _productDal.Add(product);
+            return new SuccessResult("Ürün başarıyla eklendi");
         }
 
-        public void Delete(Product product)
+        public IResult Delete(Product product)
         {
             _productDal.Delete(product);
+            return new SuccessResult("Ürün başarıyla silindi");
         }
 
-        public Task<Product> GetById(int productId)
+        public IDataResult<Task<Product>> GetById(int productId)
         {
-            return _productDal.Get(p => p.ProductId == productId);
+            return new SuccessDataResult<Task<Product>>(_productDal.Get(p => p.ProductId == productId));
         }
 
-        public Task<List<Product>> GetList()
+        public IDataResult<Task<List<Product>>> GetList()
         {
-            return _productDal.GetList();
+            return new SuccessDataResult<Task<List<Product>>>(_productDal.GetList());
         }
 
-        public Task<List<Product>> GetListByCategory(int categoryId)
+        public IDataResult<Task<List<Product>>> GetListByCategory(int categoryId)
         {
-            return _productDal.GetList(p => p.CategoryId == categoryId);
+            return new SuccessDataResult<Task<List<Product>>>(_productDal.GetList(p => p.CategoryId == categoryId));
         }
 
-        public void Update(Product product)
+        public IResult Update(Product product)
         {
             _productDal.Update(product);
+            return new SuccessResult("Ürün başarıyla güncellendi");
         }
     }
 }

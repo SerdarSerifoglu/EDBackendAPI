@@ -1,4 +1,5 @@
-﻿using EDBackendAPI.Entities.Concrete;
+﻿using EDBackendAPI.Core.Utilities.Results;
+using EDBackendAPI.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,11 +9,11 @@ namespace EDBackendAPI.Business.Abstract
 {
     public interface IProductService
     {
-        Task<Product> GetById(int productId);
-        Task<List<Product>> GetList();
-        Task<List<Product>> GetListByCategory(int categoryId);
-        void Add(Product product);
-        void Delete(Product product);
-        void Update(Product product);
+        IDataResult<Task<Product>> GetById(int productId);
+        IDataResult<Task<List<Product>>> GetList();
+        IDataResult<Task<List<Product>>> GetListByCategory(int categoryId);
+        IResult Add(Product product);
+        IResult Delete(Product product);
+        IResult Update(Product product);
     }
 }
