@@ -1,4 +1,5 @@
 ﻿using EDBackendAPI.Business.Abstract;
+using EDBackendAPI.Business.Contants;
 using EDBackendAPI.Core.Utilities.Results;
 using EDBackendAPI.DataAccess.Abstract;
 using EDBackendAPI.Entities.Concrete;
@@ -19,13 +20,13 @@ namespace EDBackendAPI.Business.Concrete
         public IResult Add(Product product)
         {
             _productDal.Add(product);
-            return new SuccessResult("Ürün başarıyla eklendi");
+            return new SuccessResult(Messages.ProductAdded);
         }
 
         public IResult Delete(Product product)
         {
             _productDal.Delete(product);
-            return new SuccessResult("Ürün başarıyla silindi");
+            return new SuccessResult(Messages.ProductDeleted);
         }
 
         public IDataResult<Task<Product>> GetById(int productId)
@@ -46,7 +47,7 @@ namespace EDBackendAPI.Business.Concrete
         public IResult Update(Product product)
         {
             _productDal.Update(product);
-            return new SuccessResult("Ürün başarıyla güncellendi");
+            return new SuccessResult(Messages.ProductUpdated);
         }
     }
 }
