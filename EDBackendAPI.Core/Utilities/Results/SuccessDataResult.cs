@@ -18,5 +18,9 @@ namespace EDBackendAPI.Core.Utilities.Results
         {
 
         }
+        public SuccessDataResult() : base(default, true)
+        {
+
+        }
     }
 }
