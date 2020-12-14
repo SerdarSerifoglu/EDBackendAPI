@@ -9,9 +9,9 @@ namespace EDBackendAPI.Business.Abstract
 {
     public interface IProductService
     {
-        IDataResult<Task<Product>> GetById(int productId);
-        IDataResult<Task<List<Product>>> GetList();
-        IDataResult<Task<List<Product>>> GetListByCategory(int categoryId);
+        IDataResult<Product> GetById(int productId);
+        IDataResult<List<Product>> GetList();
+        IDataResult<List<Product>> GetListByCategory(int categoryId);
         IResult Add(Product product);
         IResult Delete(Product product);
         IResult Update(Product product);

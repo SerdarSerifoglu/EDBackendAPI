@@ -33,19 +33,19 @@ namespace EDBackendAPI.Core.DataAccess.EntityFramework
             }
         }
 
-        public Task<TEntity> Get(Expression<Func<TEntity, bool>> filter)
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
             using (var context = new TContext())
             {
-                return context.Set<TEntity>().SingleOrDefaultAsync(filter);
+                return context.Set<TEntity>().SingleOrDefault(filter);
             }
         }
 
-        public Task<List<TEntity>> GetList(Expression<Func<TEntity, bool>> filter = null)
+        public List<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null)
         {
             using (var context = new TContext())
             {
-                return filter == null ? context.Set<TEntity>().ToListAsync() : context.Set<TEntity>().Where(filter).ToListAsync();
+                return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
             }
         }
 

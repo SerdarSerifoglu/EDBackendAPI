@@ -29,19 +29,19 @@ namespace EDBackendAPI.Business.Concrete
             return new SuccessResult(Messages.ProductDeleted);
         }
 
-        public IDataResult<Task<Product>> GetById(int productId)
+        public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Task<Product>>(_productDal.Get(p => p.ProductId == productId));
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
 
-        public IDataResult<Task<List<Product>>> GetList()
+        public IDataResult<List<Product>> GetList()
         {
-            return new SuccessDataResult<Task<List<Product>>>(_productDal.GetList());
+            return new SuccessDataResult<List<Product>>(_productDal.GetList());
         }
 
-        public IDataResult<Task<List<Product>>> GetListByCategory(int categoryId)
+        public IDataResult<List<Product>> GetListByCategory(int categoryId)
         {
-            return new SuccessDataResult<Task<List<Product>>>(_productDal.GetList(p => p.CategoryId == categoryId));
+            return new SuccessDataResult<List<Product>>(_productDal.GetList(p => p.CategoryId == categoryId));
         }
 
         public IResult Update(Product product)
