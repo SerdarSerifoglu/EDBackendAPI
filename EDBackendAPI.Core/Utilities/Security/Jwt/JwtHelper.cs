@@ -1,10 +1,12 @@
 ﻿using EDBackendAPI.Core.Entities.Concrete;
+using EDBackendAPI.Core.Extensions;
 using EDBackendAPI.Core.Utilities.Security.Encryption;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -13,8 +15,8 @@ namespace EDBackendAPI.Core.Utilities.Security.Jwt
     public class JwtHelper : ITokenHelper
     {
         public IConfiguration Configuration { get; }
-        private TokenOptions _tokenOptions;
-        DateTime _accessTokenExpiration;
+        private readonly TokenOptions _tokenOptions;
+        readonly DateTime _accessTokenExpiration;
 
         public JwtHelper(IConfiguration configuration)
         {
@@ -35,15 +37,21 @@ namespace EDBackendAPI.Core.Utilities.Security.Jwt
                 audience: tokenOptions.Audience,
                 expires: _accessTokenExpiration,
                 notBefore: DateTime.Now,
-                claims: operationClaims,
+                claims: SetClaims(user, operationClaims),
                 signingCredentials: signingCredentials
                 );
+
+            return jwt;
         }
 
         private IEnumerable<Claim> SetClaims(User user, List<OperationClaim> operationClaims)
         {
             var claims = new List<Claim>();
-            claims.Add(new Claim());
+            claims.AddNameIdentifier(user.Id.ToString());
+            claims.AddEmail(user.Email);
+            claims.AddName($"{user.FirstName} {user.LastName}");
+            claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());
+            return claims;
         }
     }
 }
