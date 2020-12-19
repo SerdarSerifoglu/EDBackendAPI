@@ -1,6 +1,7 @@
 ﻿using EDBackendAPI.Business.Abstract;
 using EDBackendAPI.DataAccess.Abstract;
 using EDBackendAPI.Entities.Concrete;
+using EDBackendAPI.Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,7 +26,7 @@ namespace EDBackendAPI.Business.Concrete
             return _userDal.Get(x => x.Email == email);
         }
 
-        public List<OperationClaim> GetClaims(User user)
+        public List<OperationClaimDto> GetClaims(User user)
         {
             return _userDal.GetClaims(user);
         }
