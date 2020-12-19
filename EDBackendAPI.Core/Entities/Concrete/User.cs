@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EDBackendAPI.Entities.Concrete
+namespace EDBackendAPI.Core.Entities.Concrete
 {
     public class User : IEntity
     {

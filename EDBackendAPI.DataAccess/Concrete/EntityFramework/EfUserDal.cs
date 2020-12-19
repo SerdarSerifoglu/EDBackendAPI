@@ -1,12 +1,12 @@
 ﻿using EDBackendAPI.Core.DataAccess.EntityFramework;
 using EDBackendAPI.DataAccess.Abstract;
 using EDBackendAPI.DataAccess.Concrete.EntityFramework.Contexts;
-using EDBackendAPI.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using EDBackendAPI.Entities.Dtos;
+using EDBackendAPI.Core.Entities.Concrete;
 
 namespace EDBackendAPI.DataAccess.Concrete.EntityFramework
 {

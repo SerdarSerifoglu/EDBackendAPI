@@ -1,6 +1,5 @@
 ﻿using EDBackendAPI.Core.DataAccess;
-using EDBackendAPI.Core.Entities;
-using EDBackendAPI.Entities.Concrete;
+using EDBackendAPI.Core.Entities.Concrete;
 using EDBackendAPI.Entities.Dtos;
 using System;
 using System.Collections.Generic;

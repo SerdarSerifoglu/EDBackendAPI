@@ -1,4 +1,5 @@
-﻿using EDBackendAPI.Entities.Concrete;
+﻿using EDBackendAPI.Core.Entities.Concrete;
+using EDBackendAPI.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

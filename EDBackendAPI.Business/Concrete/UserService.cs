@@ -1,6 +1,6 @@
 ﻿using EDBackendAPI.Business.Abstract;
+using EDBackendAPI.Core.Entities.Concrete;
 using EDBackendAPI.DataAccess.Abstract;
-using EDBackendAPI.Entities.Concrete;
 using EDBackendAPI.Entities.Dtos;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace EDBackendAPI.Business.Concrete
 {
     public class UserService : IUserService
     {
-        IUserDal _userDal;
+        private readonly IUserDal _userDal;
         public UserService(IUserDal userDal)
         {
             _userDal = userDal;
