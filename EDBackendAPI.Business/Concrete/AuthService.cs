@@ -1,6 +1,7 @@
 ﻿using EDBackendAPI.Business.Abstract;
 using EDBackendAPI.Business.Contants;
 using EDBackendAPI.Core.Entities.Concrete;
+using EDBackendAPI.Core.Utilities.Hashing;
 using EDBackendAPI.Core.Utilities.Results;
 using EDBackendAPI.Core.Utilities.Security.Jwt;
 using EDBackendAPI.Entities.Dtos;
@@ -29,7 +30,13 @@ namespace EDBackendAPI.Business.Concrete
             {
                 return new ErrorDataResult<User>(Messages.UserNotFound);
             }
-            return null;
+
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
+            {
+                return new ErrorDataResult<User>(Messages.PasswordError);
+            }
+
+            return new SuccessDataResult<User>(userToCheck,Messages.SuccessfulLogin);
         }
 
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)

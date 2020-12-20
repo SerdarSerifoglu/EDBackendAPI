@@ -11,5 +11,7 @@ namespace EDBackendAPI.Business.Contants
         public static string ProductDeleted = "Ürün başarıyla silindi";
         public static string ProductUpdated = "Ürün başarıyla güncellendi";
         public static string UserNotFound = "Kullanıcı Bulunamadı";
+        public static string PasswordError = "Şifre Hatalı";
+        public static string SuccessfulLogin = "Sisteme Giriş Başarılı";
     }
 }
