@@ -1,5 +1,6 @@
 ﻿using EDBackendAPI.Business.Abstract;
 using EDBackendAPI.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,6 +20,8 @@ namespace EDBackendAPI.WebAPI.Controllers
             _productService = productService;
         }
         [HttpGet("getall")]
+        //Burdaki Role UserOperationClaims tablosundaki varlığı kontrol ediyor. OperationClaims tablosunda bu yetki var mı ve bu yetki şuanki kullanıcıya tanımlı mı?
+        [Authorize(Roles = "Product.List")]
         public IActionResult GetList()
         {
             var result = _productService.GetList();
