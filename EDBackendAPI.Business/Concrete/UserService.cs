@@ -1,5 +1,6 @@
 ﻿using EDBackendAPI.Business.Abstract;
 using EDBackendAPI.Core.Entities.Concrete;
+using EDBackendAPI.Core.Entities.Dtos;
 using EDBackendAPI.DataAccess.Abstract;
 using EDBackendAPI.Entities.Dtos;
 using System;

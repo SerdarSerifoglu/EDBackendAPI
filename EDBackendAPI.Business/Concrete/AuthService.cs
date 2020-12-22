@@ -14,13 +14,17 @@ namespace EDBackendAPI.Business.Concrete
     public class AuthService : IAuthService
     {
         private readonly IUserService _userService;
-        public AuthService(IUserService userService)
+        private readonly ITokenHelper _tokenHelper;
+        public AuthService(IUserService userService, ITokenHelper tokenHelper)
         {
             _userService = userService;
+            _tokenHelper = tokenHelper;
         }
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            throw new NotImplementedException();
+            var claims = _userService.GetClaims(user);
+            var accessToken = _tokenHelper.CreateToken(user, claims);
+            return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)

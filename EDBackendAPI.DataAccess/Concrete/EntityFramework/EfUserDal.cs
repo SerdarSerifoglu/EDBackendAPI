@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using EDBackendAPI.Entities.Dtos;
 using EDBackendAPI.Core.Entities.Concrete;
+using EDBackendAPI.Core.Entities.Dtos;
 
 namespace EDBackendAPI.DataAccess.Concrete.EntityFramework
 {

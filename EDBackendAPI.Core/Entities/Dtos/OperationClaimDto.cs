@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EDBackendAPI.Entities.Dtos
+namespace EDBackendAPI.Core.Entities.Dtos
 {
     public class OperationClaimDto : IDto
     {
