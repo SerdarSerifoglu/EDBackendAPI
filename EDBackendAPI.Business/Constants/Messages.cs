@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EDBackendAPI.Business.Contants
+namespace EDBackendAPI.Business.Constants
 {
     //Magic stringlerden kurtulmak için bu class'ı oluşturduk.
     public static class Messages

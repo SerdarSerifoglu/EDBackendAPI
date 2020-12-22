@@ -1,5 +1,5 @@
 ﻿using EDBackendAPI.Business.Abstract;
-using EDBackendAPI.Business.Contants;
+using EDBackendAPI.Business.Constants;
 using EDBackendAPI.Core.Utilities.Results;
 using EDBackendAPI.DataAccess.Abstract;
 using EDBackendAPI.Entities.Concrete;
