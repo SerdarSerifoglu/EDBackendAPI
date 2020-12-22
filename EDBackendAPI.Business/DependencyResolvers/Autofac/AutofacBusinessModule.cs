@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using EDBackendAPI.Business.Abstract;
 using EDBackendAPI.Business.Concrete;
+using EDBackendAPI.Core.Utilities.Security.Jwt;
 using EDBackendAPI.DataAccess.Abstract;
 using EDBackendAPI.DataAccess.Concrete.EntityFramework;
 using System;
@@ -18,6 +19,9 @@ namespace EDBackendAPI.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
+
+            builder.RegisterType<AuthService>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
         }
     }
 }

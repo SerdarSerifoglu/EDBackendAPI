@@ -12,7 +12,7 @@ namespace EDBackendAPI.Business.Concrete
 {
     public class ProductService : IProductService
     {
-        private IProductDal _productDal;
+        private readonly IProductDal _productDal;
         public ProductService(IProductDal productDal)
         {
             _productDal = productDal;

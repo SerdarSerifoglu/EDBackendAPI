@@ -13,13 +13,13 @@ namespace EDBackendAPI.WebAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        IAuthService _authService;
+        private readonly IAuthService _authService;
         public AuthController(IAuthService authService)
         {
             _authService = authService;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public ActionResult Login(UserForLoginDto userForLoginDto)
         {
             var userToLogin = _authService.Login(userForLoginDto);
@@ -35,7 +35,7 @@ namespace EDBackendAPI.WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpPost]
+        [HttpPost("register")]
         public ActionResult Register(UserForRegisterDto userForRegisterDto)
         {
             var userExists = _authService.UserExists(userForRegisterDto.Email);
