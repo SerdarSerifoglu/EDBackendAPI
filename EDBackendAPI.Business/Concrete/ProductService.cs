@@ -1,5 +1,7 @@
 ﻿using EDBackendAPI.Business.Abstract;
 using EDBackendAPI.Business.Constants;
+using EDBackendAPI.Business.ValidationRules.FluentValidation;
+using EDBackendAPI.Core.CrossCuttingConcerns.Validation.FluentValidation;
 using EDBackendAPI.Core.Utilities.Results;
 using EDBackendAPI.DataAccess.Abstract;
 using EDBackendAPI.Entities.Concrete;
@@ -19,6 +21,7 @@ namespace EDBackendAPI.Business.Concrete
         }
         public IResult Add(Product product)
         {
+            ValidationTool.Validate(new ProductValidator(), product);
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
         }

@@ -14,7 +14,7 @@ namespace EDBackendAPI.WebAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private IProductService _productService;
+        private readonly IProductService _productService;
         public ProductsController(IProductService productService)
         {
             _productService = productService;
