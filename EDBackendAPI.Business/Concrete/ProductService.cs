@@ -1,6 +1,7 @@
 ﻿using EDBackendAPI.Business.Abstract;
 using EDBackendAPI.Business.Constants;
 using EDBackendAPI.Business.ValidationRules.FluentValidation;
+using EDBackendAPI.Core.Aspects.Autofac.Validation;
 using EDBackendAPI.Core.CrossCuttingConcerns.Validation.FluentValidation;
 using EDBackendAPI.Core.Utilities.Results;
 using EDBackendAPI.DataAccess.Abstract;
@@ -19,9 +20,10 @@ namespace EDBackendAPI.Business.Concrete
         {
             _productDal = productDal;
         }
+        [ValidationAspect(typeof(ProductValidator),Priority = 1)]
         public IResult Add(Product product)
         {
-            ValidationTool.Validate(new ProductValidator(), product);
+            //ValidationTool.Validate(new ProductValidator(), product);
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
         }

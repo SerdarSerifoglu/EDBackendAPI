@@ -1,12 +1,15 @@
 ﻿using Autofac;
+using Autofac.Extras.DynamicProxy;
 using EDBackendAPI.Business.Abstract;
 using EDBackendAPI.Business.Concrete;
 using EDBackendAPI.Core.Utilities.Security.Jwt;
 using EDBackendAPI.DataAccess.Abstract;
 using EDBackendAPI.DataAccess.Concrete.EntityFramework;
+using Castle.DynamicProxy;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EDBackendAPI.Core.Utilities.Interceptors.Autofac;
 
 namespace EDBackendAPI.Business.DependencyResolvers.Autofac
 {
@@ -22,6 +25,13 @@ namespace EDBackendAPI.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<AuthService>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
+                .EnableInterfaceInterceptors(new ProxyGenerationOptions()
+                {
+                    Selector = new AspectInterceptorSelector()
+                }).SingleInstance();
         }
     }
 }
