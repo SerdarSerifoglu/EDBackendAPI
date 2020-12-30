@@ -1,6 +1,7 @@
 ﻿using EDBackendAPI.Business.Abstract;
 using EDBackendAPI.Business.Constants;
 using EDBackendAPI.Business.ValidationRules.FluentValidation;
+using EDBackendAPI.Core.Aspects.Autofac.Transaction;
 using EDBackendAPI.Core.Aspects.Autofac.Validation;
 using EDBackendAPI.Core.CrossCuttingConcerns.Validation.FluentValidation;
 using EDBackendAPI.Core.Utilities.Results;
@@ -20,7 +21,7 @@ namespace EDBackendAPI.Business.Concrete
         {
             _productDal = productDal;
         }
-        [ValidationAspect(typeof(ProductValidator),Priority = 1)]
+        [ValidationAspect(typeof(ProductValidator), Priority = 1)]
         public IResult Add(Product product)
         {
             //ValidationTool.Validate(new ProductValidator(), product);
@@ -47,6 +48,15 @@ namespace EDBackendAPI.Business.Concrete
         public IDataResult<List<Product>> GetListByCategory(int categoryId)
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetList(p => p.CategoryId == categoryId));
+        }
+
+        [TransactionScopeAspect]
+        public IResult TransactionalOperation(Product product)
+        {
+            _productDal.Update(product);
+            _productDal.Add(product);
+
+            return new SuccessResult(Messages.ProductUpdated);
         }
 
         public IResult Update(Product product)

@@ -93,5 +93,19 @@ namespace EDBackendAPI.WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+        [HttpPost("transaction")]
+
+        public IActionResult TransactionTest(Product product)
+        {
+            //TransactionAspect'ini test edebilmek için eklendi.
+            var result = _productService.TransactionalOperation(product);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+
+            return BadRequest(result.Message);
+        }
+
     }
 }
