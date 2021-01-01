@@ -1,3 +1,6 @@
+using EDBackendAPI.Core.DependencyResolvers;
+using EDBackendAPI.Core.Extensions;
+using EDBackendAPI.Core.Utilities.IoC;
 using EDBackendAPI.Core.Utilities.Security.Encryption;
 using EDBackendAPI.Core.Utilities.Security.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -52,7 +55,10 @@ namespace EDBackendAPI.WebAPI
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                 };
-              });
+            });
+            services.AddDependencyResolvers(new ICoreModule[] {
+                new CoreModule()
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
