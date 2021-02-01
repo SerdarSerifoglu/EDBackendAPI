@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using EDBackendAPI.Core.Aspects.Autofac.Caching;
 
 namespace EDBackendAPI.Business.Concrete
 {
@@ -22,6 +23,7 @@ namespace EDBackendAPI.Business.Concrete
             _productDal = productDal;
         }
         [ValidationAspect(typeof(ProductValidator), Priority = 1)]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
             //ValidationTool.Validate(new ProductValidator(), product);
@@ -45,6 +47,7 @@ namespace EDBackendAPI.Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetList());
         }
 
+        [CacheAspect(duration:1)]
         public IDataResult<List<Product>> GetListByCategory(int categoryId)
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetList(p => p.CategoryId == categoryId));
